@@ -49,7 +49,9 @@ public class WeatherController {
                       timeseries.time(),
                       timeseries.time().toLocalDateTime(),
                       timeseries.data().instant().details().airTemperature(),
-                      timeseries.data().instant().details().relativeHumidity());
+                      timeseries.data().instant().details().relativeHumidity(),
+                      response1.country(),
+                      response1.city());
               weatherFormatter.weatherSeries.add(weatherSeries);
             });
     return weatherFormatter.weatherSeries;

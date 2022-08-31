@@ -17,13 +17,23 @@ public class WeatherFormatter {
     private LocalDateTime local;
     private float temperature;
     private float humidity;
+    private String country;
+
+    private String city;
 
     public WeatherSeries(
-        ZonedDateTime utc, LocalDateTime local, String temperature, String humidity) {
+        ZonedDateTime utc,
+        LocalDateTime local,
+        String temperature,
+        String humidity,
+        String country,
+        String city) {
       this.utc = utc;
       this.local = local;
       this.humidity = Float.parseFloat(humidity);
       this.temperature = Float.parseFloat(temperature);
+      this.country = country;
+      this.city = city;
     }
   }
 }
