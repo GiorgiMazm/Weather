@@ -1,8 +1,9 @@
-package Giorgi.Weather;
+package weather;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -17,6 +18,7 @@ public class Weather2 {
     @lombok.Data
     public static class Timeseries {
       private Data data;
+      private LocalDateTime time;
 
       @lombok.Data
       public static class Data {
@@ -29,6 +31,7 @@ public class Weather2 {
           @lombok.Data
           public static class Details {
             private String air_temperature;
+            private String relative_humidity;
           }
         }
       }
