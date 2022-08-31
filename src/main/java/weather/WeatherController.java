@@ -1,5 +1,6 @@
 package weather;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -11,30 +12,34 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+@Log4j2
 @RestController
 public class WeatherController {
   @Value("${app.link}")
-  String link;
+  String linkCoordinate;
 
   @Value("${app.link2}")
-  String link2;
+  String linkWeather;
 
   @GetMapping(path = "/weather")
   public List<WeatherSeries> showWeather() {
     RestTemplate restTemplate = new RestTemplate();
-    var response1 = restTemplate.getForObject(link, Coordinate.class);
+    var responseGeoCoordinate = restTemplate.getForObject(linkCoordinate, Coordinate.class);
+    assert responseGeoCoordinate != null;
+    log.info("response from " + linkCoordinate + responseGeoCoordinate);
 
     final HttpHeaders headers = new HttpHeaders();
     headers.set("User-Agent", "Giorgi");
     final HttpEntity<String> entity = new HttpEntity<>(headers);
-    assert response1 != null;
 
-    ResponseEntity<Weather> response2 =
+    ResponseEntity<Weather> responseWeather =
         restTemplate.exchange(
-            link2 + response1.lat() + "&lon=" + response1.lon(),
+            linkWeather + responseGeoCoordinate.lat() + "&lon=" + responseGeoCoordinate.lon(),
             HttpMethod.GET,
             entity,
             Weather.class);
-    return WeatherCreator.makeWeather(response1, response2);
+
+    log.info("response from " + linkWeather + responseWeather);
+    return WeatherCreator.makeWeather(responseGeoCoordinate, responseWeather);
   }
 }
