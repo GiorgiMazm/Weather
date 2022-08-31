@@ -20,7 +20,7 @@ public class WeatherController {
   String link2;
 
   @GetMapping(path = "/weather")
-  public List<WeatherFormatter.WeatherSeries> showWeather() {
+  public List<WeatherSeries> showWeather() {
     RestTemplate restTemplate = new RestTemplate();
     var response1 = restTemplate.getForObject(link, Coordinate.class);
 
@@ -45,7 +45,7 @@ public class WeatherController {
         .forEach(
             (Weather.Properties.Timeseries timeseries) -> {
               var weatherSeries =
-                  new WeatherFormatter.WeatherSeries(
+                  new WeatherSeries(
                       timeseries.time(),
                       timeseries.time().toLocalDateTime(),
                       timeseries.data().instant().details().airTemperature(),
