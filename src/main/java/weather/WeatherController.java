@@ -46,8 +46,8 @@ public class WeatherController {
             (Weather.Properties.Timeseries timeseries) -> {
               var weatherSeries =
                   new WeatherFormatter.WeatherSeries(
-                      timeseries.time().toString(),
                       timeseries.time(),
+                      timeseries.time().toLocalDateTime(),
                       timeseries.data().instant().details().airTemperature(),
                       timeseries.data().instant().details().relativeHumidity());
               weatherFormatter.weatherSeries.add(weatherSeries);

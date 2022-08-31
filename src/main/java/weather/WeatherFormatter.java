@@ -3,6 +3,7 @@ package weather;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +13,15 @@ public class WeatherFormatter {
 
   @Data
   public static class WeatherSeries {
-    private String utc;
-    private String local;
+    private ZonedDateTime utc;
+    private LocalDateTime local;
     private float temperature;
     private float humidity;
 
-    public WeatherSeries(String utc, LocalDateTime local, String temperature, String humidity) {
+    public WeatherSeries(
+        ZonedDateTime utc, LocalDateTime local, String temperature, String humidity) {
       this.utc = utc;
-      this.local = String.valueOf(local);
+      this.local = local;
       this.humidity = Float.parseFloat(humidity);
       this.temperature = Float.parseFloat(temperature);
     }
