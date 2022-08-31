@@ -24,7 +24,7 @@ public class WeatherController {
     RestTemplate restTemplate = new RestTemplate();
     var response1 = restTemplate.getForObject(link, Coordinate.class);
 
-    /**/ final HttpHeaders headers = new HttpHeaders();
+    final HttpHeaders headers = new HttpHeaders();
     headers.set("User-Agent", "Giorgi");
     final HttpEntity<String> entity = new HttpEntity<>(headers);
     assert response1 != null;
@@ -35,25 +35,6 @@ public class WeatherController {
             HttpMethod.GET,
             entity,
             Weather.class);
-
-    var weatherFormatter = new WeatherFormatter();
-
-    Weather body = response2.getBody();
-    assert body != null;
-    body.properties()
-        .timeseries()
-        .forEach(
-            (Weather.Properties.Timeseries timeseries) -> {
-              var weatherSeries =
-                  new WeatherSeries(
-                      timeseries.time(),
-                      timeseries.time().toLocalDateTime(),
-                      timeseries.data().instant().details().airTemperature(),
-                      timeseries.data().instant().details().relativeHumidity(),
-                      response1.country(),
-                      response1.city());
-              weatherFormatter.weatherSeries.add(weatherSeries);
-            });
-    return weatherFormatter.weatherSeries;
+    return WeatherCreator.makeWeather(response1, response2);
   }
 }
