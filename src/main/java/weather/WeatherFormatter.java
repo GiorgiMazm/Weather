@@ -2,7 +2,7 @@ package weather;
 
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class WeatherFormatter {
     private float temperature;
     private float humidity;
 
-    public WeatherSeries(String utc, LocalDate local, String temperature, String humidity) {
+    public WeatherSeries(String utc, LocalDateTime local, String temperature, String humidity) {
       this.utc = utc;
       this.local = String.valueOf(local);
       this.humidity = Float.parseFloat(humidity);

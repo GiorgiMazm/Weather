@@ -29,27 +29,27 @@ public class WeatherController {
     final HttpEntity<String> entity = new HttpEntity<>(headers);
     assert response1 != null;
 
-    ResponseEntity<Weather2> response2 =
+    ResponseEntity<Weather> response2 =
         restTemplate.exchange(
             link2 + response1.lat() + "&lon=" + response1.lon(),
             HttpMethod.GET,
             entity,
-            Weather2.class);
+            Weather.class);
 
     var weatherFormatter = new WeatherFormatter();
 
-    Weather2 body = response2.getBody();
+    Weather body = response2.getBody();
     assert body != null;
-    body.getProperties()
-        .getTimeseries()
+    body.properties()
+        .timeseries()
         .forEach(
-            (Weather2.Properties.Timeseries timeseries) -> {
+            (Weather.Properties.Timeseries timeseries) -> {
               var weatherSeries =
                   new WeatherFormatter.WeatherSeries(
-                      timeseries.getTime().toString(),
-                      timeseries.getTime().toLocalDate(),
-                      timeseries.getData().getInstant().getDetails().getAir_temperature(),
-                      timeseries.getData().getInstant().getDetails().getRelative_humidity());
+                      timeseries.time().toString(),
+                      timeseries.time(),
+                      timeseries.data().instant().details().airTemperature(),
+                      timeseries.data().instant().details().relativeHumidity());
               weatherFormatter.weatherSeries.add(weatherSeries);
             });
     return weatherFormatter.weatherSeries;
