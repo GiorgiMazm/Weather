@@ -1,4 +1,4 @@
-package weather;
+package weather.model;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;

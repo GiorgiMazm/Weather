@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "country": "Germany",
+  "countryCode": "DE",
+  "region": "HH",
+  "regionName": "Free and Hanseatic City of Hamburg",
+  "city": "Hamburg",
+  "zip": "20097",
+  "lat": 53.5466,
+  "lon": 10.021,
+  "timezone": "Europe/Berlin",
+  "isp": "1&1 Versatel Deutschland GmbH",
+  "org": "VT Customer N",
+  "as": "AS8881 1&1 Versatel Deutschland GmbH",
+  "query": "89.27.237.138"
+}

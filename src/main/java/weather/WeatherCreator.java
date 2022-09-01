@@ -1,18 +1,20 @@
 package weather;
 
-import org.springframework.http.ResponseEntity;
+import weather.model.Coordinate;
+import weather.model.Weather;
+import weather.model.WeatherFormatter;
+import weather.model.WeatherSeries;
 
 import java.util.List;
 
 public class WeatherCreator {
   public static List<WeatherSeries> makeWeather(
-      Coordinate responseGeoCoordinate, ResponseEntity<Weather> responseWeather) {
+      Coordinate responseGeoCoordinate, Weather responseWeather) {
 
     var weatherFormatter = new WeatherFormatter();
-
-    Weather body = responseWeather.getBody();
-    assert body != null;
-    body.properties()
+    assert responseWeather != null;
+    responseWeather
+        .properties()
         .timeseries()
         .forEach(
             (Weather.Properties.Timeseries timeseries) -> {
