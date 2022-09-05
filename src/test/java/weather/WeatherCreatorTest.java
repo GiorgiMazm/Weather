@@ -10,21 +10,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestTemplate;
-import weather.model.Coordinate;
 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class WeatherControllerTest {
-
-  @Autowired WeatherService weatherService;
+class WeatherCreatorTest {
   @Autowired CoordinateService coordinateService;
+  @Autowired WeatherService weatherService;
   private MockRestServiceServer mockServer;
-  @Autowired private MockMvc mockMvc;
   @Autowired private RestTemplate restTemplate;
 
   @BeforeEach
@@ -38,13 +34,13 @@ public class WeatherControllerTest {
   }
 
   @Test
-  void callsApiReturnsResult() {
+  void makeWeather() {
+
     mockServer
-        .expect(requestTo("/weather"))
+        .expect(requestTo("http://ip-api.com/json/"))
         .andRespond(
             withSuccess(
-                new ClassPathResource("/weather-response.json"), MediaType.APPLICATION_JSON));
-
+                new ClassPathResource("/ip-api-response.json"), MediaType.APPLICATION_JSON));
     var currentLocation = coordinateService.getCurrentLocation();
 
     var weather = weatherService.getWeatherFor(coordinateService.getCurrentLocation());
