@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto Light", sans-serif;
+    background-color: black;
+    color: white;
+}
+
+.home-a {
+    text-decoration: none;
+    color: white;
+
+}
+
+.home-h1 {
+    font-size: 50px;
+    margin-top: 200px;
+    margin-bottom: 50px;
+}
+
+.home-button {
+    margin-top: 10px;
+    padding: 15px 170px;
+    font-size: 16px;
+    border: white 1px solid;
+    cursor: pointer;
+}
+
+.home-button:hover {
+    padding: 20px 190px;
+    border: red 3px solid;
+}
+
+.home-wrapper {
+    text-align: center;
+}
+
+td {
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+}
+
+.weather-for-day {
+    width: 100%;
+}
+
+.weather-wrapper {
+    width: 50%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+}
+
+.day {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.weather-for-city {
+    position: absolute;
+    top: 35%;
+    left: 35px;
+    font-size: 40px;
+}
+
+.arrow{
+    background: transparent;
+    font-size: 270px;
+    position: absolute;
+    bottom: -165px;
+    left: -40px;
+}

@@ -5,6 +5,7 @@ import weather.model.Weather;
 import weather.model.WeatherFormatter;
 import weather.model.WeatherSeries;
 
+import java.time.ZoneId;
 import java.util.List;
 
 public class WeatherCreator {
@@ -21,7 +22,10 @@ public class WeatherCreator {
               var weatherSeries =
                   new WeatherSeries(
                       timeseries.time(),
-                      timeseries.time().toLocalDateTime(),
+                      timeseries
+                          .time()
+                          .withZoneSameInstant(ZoneId.of(responseGeoCoordinate.timeZone()))
+                          .toLocalDateTime(),
                       timeseries.data().instant().details().airTemperature(),
                       timeseries.data().instant().details().relativeHumidity(),
                       responseGeoCoordinate.country(),

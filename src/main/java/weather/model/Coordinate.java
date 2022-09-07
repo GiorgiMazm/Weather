@@ -1,4 +1,6 @@
 package weather.model;
 
-public record Coordinate(float lat, float lon, String country, String city ){
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record Coordinate(float lat, float lon, String country, String city, @JsonProperty("timezone") String timeZone ){
 }
