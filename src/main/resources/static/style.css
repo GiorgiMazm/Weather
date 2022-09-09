@@ -9,7 +9,7 @@
 .home-a {
     text-decoration: none;
     color: white;
-        margin-top: 10px;
+    margin-top: 10px;
     padding: 15px 170px;
     font-size: 16px;
     border: white 1px solid;
@@ -22,9 +22,11 @@
     margin-top: 200px;
     margin-bottom: 50px;
 }
-.home-button{
+
+.home-button {
     border: none;
 }
+
 .home-a:hover {
     padding: 20px 190px;
     border: red 3px solid;
@@ -58,13 +60,13 @@ td {
 }
 
 .weather-for-city {
-    position: absolute;
+    position: fixed;
     top: 35%;
     left: 35px;
     font-size: 40px;
 }
 
-.arrow{
+.arrow {
     background: transparent;
     font-size: 270px;
     position: absolute;

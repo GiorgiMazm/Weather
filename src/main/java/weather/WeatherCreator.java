@@ -20,14 +20,12 @@ public class WeatherCreator {
         .forEach(
             (Weather.Properties.Timeseries timeseries) -> {
               String symbolCode;
-
-              if (timeseries.data().next_6_hours() == null
-                  && timeseries.data().next_1_hours() == null) {
-                symbolCode = "cloudy";
-              } else if (timeseries.data().next_1_hours() == null) {
+              if (timeseries.data().next_1_hours() != null) {
+                symbolCode = timeseries.data().next_1_hours().summary().symbolCode();
+              } else if (timeseries.data().next_6_hours() != null) {
                 symbolCode = timeseries.data().next_6_hours().summary().symbolCode();
               } else {
-                symbolCode = timeseries.data().next_1_hours().summary().symbolCode();
+                symbolCode = "cloudy";
               }
 
               var weatherSeries =
