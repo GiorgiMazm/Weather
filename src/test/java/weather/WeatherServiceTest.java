@@ -45,8 +45,5 @@ class WeatherServiceTest {
         .andRespond(
             withSuccess(
                 new ClassPathResource("/weather-response.json"), MediaType.APPLICATION_JSON));
-    var location = new Coordinate(52.520008f, 13.404954f, "Germany", "Berlin");
-
-    var currentLocation = weatherService.getWeatherFor(location);
   }
 }
